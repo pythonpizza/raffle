@@ -1,0 +1,4 @@
+body {
+    background: var(--primary-color) linear-gradient(135deg, var(--primary-color), #ff5064) no-repeat;
+    min-height: 100vh;
+}

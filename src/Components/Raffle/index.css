@@ -1,0 +1,48 @@
+.raffle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    &--selected-entry-wrapper {
+        height: 12rem;
+
+        position: relative;
+        perspective: 50rem;
+    }
+    &--selected-entry {
+        display: block;
+        font-size: 7.2rem;
+        font-weight: bold;
+        font-family: var(--font-name--heading);
+        text-align: center;
+        user-select: none;
+
+        &--enter {
+            opacity: 0;
+            transform: translateZ(50rem) rotateX(-10deg) rotateY(180deg);
+            transition: 1.2s 0.3s cubic-bezier(0.8, 0, 0.15, 1);
+            transition-property: opacity, transform;
+
+            &-active {
+                transform: translateZ(0);
+                opacity: 1;
+            }
+        }
+        &--exit {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+            opacity: 1;
+            transition: opacity 0.3s ease-out;
+
+            &-active {
+                opacity: 0;
+            }
+        }
+    }
+}
