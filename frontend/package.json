@@ -1,0 +1,36 @@
+{
+    "name": "Raffle",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "repository": "git@github.com:pythonpizza/raffle.git",
+    "author": "Dario Carella <dario.kar@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "dev": "./node_modules/.bin/poi develop",
+        "build": "./node_modules/.bin/poi build"
+    },
+    "dependencies": {
+        "@poi/plugin-typescript": "^10.2.0",
+        "@types/classnames": "^2.2.6",
+        "@types/react": "^16.4.13",
+        "@types/react-dom": "^16.0.7",
+        "@types/react-transition-group": "^2.0.13",
+        "classnames": "^2.2.5",
+        "eslint": "^4.5.0",
+        "eslint-config-synacor": "^1.1.0",
+        "eslint-plugin-typescript": "0.12.0",
+        "poi": "^10.2.10",
+        "postcss-custom-media": "6.0.0",
+        "postcss-nested": "3.0.0",
+        "prettier": "^1.6.0",
+        "raw-loader": "0.5.1",
+        "react": "^16.4.2",
+        "react-dom": "^16.4.2",
+        "react-hot-loader": "4.3.3",
+        "react-svg-inline": "2.1.1",
+        "react-transition-group": "^2.4.0",
+        "tslint": "5.10.0",
+        "typescript": "2.9.2",
+        "typescript-eslint-parser": "16.0.0"
+    }
+}
