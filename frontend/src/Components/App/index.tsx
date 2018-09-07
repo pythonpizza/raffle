@@ -16,12 +16,51 @@ export default class App extends React.Component {
     };
 
     componentWillMount() {
-        setTimeout(() => {
+        const loadEntriesPromise = new Promise(resolve => setTimeout(resolve, 1000 * Math.random())).then(() =>
             this.setState({
-                isLoading: false,
-                entries: [1, 3, 4, 7, 11, 12, 18, 24, 29, 32, 38, 47, 48, 54, 64, 69, 76, 91, 123],
+                entries: [
+                    1,
+                    3,
+                    4,
+                    7,
+                    11,
+                    12,
+                    18,
+                    24,
+                    29,
+                    32,
+                    38,
+                    47,
+                    48,
+                    54,
+                    57,
+                    64,
+                    69,
+                    71,
+                    76,
+                    83,
+                    86,
+                    89,
+                    91,
+                    99,
+                    111,
+                    123,
+                ],
+            })
+        );
+        const preloadPizza = i => {
+            new Promise(resolve => {
+                const image = new Image();
+                image.onload = resolve;
+                image.onerror = resolve;
+                image.src = require(`Assets/images/pizza--${i}.png`);
             });
-        }, 1000 + 1000 * Math.random());
+        };
+        const preloadPizzasPromise = Promise.all(
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(i => preloadPizza(i))
+        );
+
+        Promise.all([loadEntriesPromise, preloadPizzasPromise]).then(() => this.setState({ isLoading: false }));
     }
 
     handleEntrySelected = (e: number) => {
