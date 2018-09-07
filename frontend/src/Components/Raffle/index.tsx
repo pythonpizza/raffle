@@ -43,7 +43,7 @@ export default class Raffle extends React.Component<RaffleProps, {}> {
 
         return (
             <div className="raffle">
-                <TransitionGroup component="div" className="raffle--selected-entry-wrapper">
+                <TransitionGroup className="raffle--selected-entry-wrapper">
                     {selectedEntry && (
                         <EntryTransition key={`entry--${selectedEntry}`}>
                             <span className="raffle--selected-entry">{selectedEntry}</span>
