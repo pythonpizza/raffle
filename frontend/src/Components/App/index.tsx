@@ -48,7 +48,7 @@ export default class App extends React.Component {
                 ],
             })
         );
-        const preloadPizza = i => {
+        const preloadPizza = (i: number) => {
             new Promise(resolve => {
                 const image = new Image();
                 image.onload = resolve;

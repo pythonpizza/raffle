@@ -1,0 +1,35 @@
+version: 2
+jobs:
+    build:
+        working_directory: ~/app/
+        docker:
+            - image: circleci/node:10-browsers
+        steps:
+            - checkout
+            - run:
+                  name: Install firebase tools
+                  command: npm install
+            - run:
+                  name: Install firebase functions
+                  command: npm install
+                  working_directory: ~/app/functions
+            - run:
+                  name: Install frontend deps
+                  command: npm install
+                  working_directory: ~/app/frontend
+            - run:
+                  name: Build website
+                  command: npm run build
+                  working_directory: ~/app/frontend
+            - deploy:
+                  name: Deploy to Firebase
+                  command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+workflows:
+    version: 2
+    build-and-deploy:
+        jobs:
+            - build
+general:
+    branches:
+        only:
+            - master # list of branches to build
