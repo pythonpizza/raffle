@@ -19,7 +19,7 @@ export default class App extends React.Component {
         setTimeout(() => {
             this.setState({
                 isLoading: false,
-                entries: [1, 3, 4, 7, 11, 18, 29, 47, 76, 123],
+                entries: [1, 3, 4, 7, 11, 12, 18, 24, 29, 32, 38, 47, 48, 54, 64, 69, 76, 91, 123],
             });
         }, 1000 + 1000 * Math.random());
     }

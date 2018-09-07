@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import classnames from 'classnames';
 
 import './index.css';
 
@@ -20,10 +21,13 @@ export interface RaffleProps {
 export default class Raffle extends React.Component<RaffleProps, {}> {
     state = {
         selectedEntry: null,
+        selectedEntriesCount: 0,
+        isShaking: false,
     };
 
     handleRaffle = () => {
         const { entries, onSelect } = this.props;
+        const { selectedEntriesCount } = this.state;
 
         if (!entries.length) {
             return false;
@@ -31,7 +35,14 @@ export default class Raffle extends React.Component<RaffleProps, {}> {
 
         const selectedEntry = entries[Math.round(Math.random() * (entries.length - 1))];
 
-        this.setState({ selectedEntry });
+        this.setState(
+            {
+                selectedEntry,
+                selectedEntriesCount: selectedEntriesCount + 1,
+                isShaking: true,
+            },
+            () => setTimeout(() => this.setState({ isShaking: false }), 300)
+        );
         onSelect(selectedEntry);
 
         return true;
@@ -39,7 +50,14 @@ export default class Raffle extends React.Component<RaffleProps, {}> {
 
     render() {
         const { entries } = this.props;
-        const { selectedEntry } = this.state;
+        const { selectedEntry, selectedEntriesCount, isShaking } = this.state;
+
+        const pizzaSuffix = selectedEntriesCount % 17;
+        const buttonClasses = classnames('raffle--button', {
+            'raffle--button--1-bite': pizzaSuffix === 1,
+            [`raffle--button--${pizzaSuffix}-bites`]: pizzaSuffix > 1,
+            'raffle--button--shaking': isShaking,
+        });
 
         return (
             <div className="raffle">
@@ -50,7 +68,7 @@ export default class Raffle extends React.Component<RaffleProps, {}> {
                         </EntryTransition>
                     )}
                 </TransitionGroup>
-                <button onClick={this.handleRaffle}>Raffle!</button>
+                <button className={buttonClasses} onClick={this.handleRaffle} />
             </div>
         );
     }
