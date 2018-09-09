@@ -21,17 +21,8 @@ export default class App extends React.Component {
                 entries: Array.from(Array(64).keys()).map((_, i) => i + 1),
             })
         );
-        const preloadPizza = (i: number) => {
-            new Promise(resolve => {
-                const image = new Image();
-                image.onload = resolve;
-                image.onerror = resolve;
-                image.src = require(`Assets/images/pizza--${i}.png`);
-            });
-        };
-        const preloadPizzasPromise = Promise.all(Array.from(Array(17).keys()).map(i => preloadPizza(i)));
 
-        Promise.all([loadEntriesPromise, preloadPizzasPromise]).then(() => this.setState({ isLoading: false }));
+        loadEntriesPromise.then(() => this.setState({ isLoading: false }));
     }
 
     handleEntrySelected = (e: number) => {
@@ -46,6 +37,7 @@ export default class App extends React.Component {
 
         return (
             <div>
+                <div className="pizza-preload" />
                 {isLoading && <div>Loading...</div>}
                 {!isLoading && <Raffle entries={availableEntries} onSelect={this.handleEntrySelected} />}
             </div>

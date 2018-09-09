@@ -2,3 +2,18 @@ body {
     background: var(--primary-color) linear-gradient(135deg, var(--primary-color), #ff5064) no-repeat;
     min-height: 100vh;
 }
+
+.pizza-preload {
+    width: 0;
+    height: 0;
+
+    background-image: url(../../../assets/images/pizza--1.png), url(../../../assets/images/pizza--2.png),
+        url(../../../assets/images/pizza--3.png), url(../../../assets/images/pizza--4.png),
+        url(../../../assets/images/pizza--5.png), url(../../../assets/images/pizza--6.png),
+        url(../../../assets/images/pizza--7.png), url(../../../assets/images/pizza--8.png),
+        url(../../../assets/images/pizza--9.png), url(../../../assets/images/pizza--10.png),
+        url(../../../assets/images/pizza--11.png), url(../../../assets/images/pizza--12.png),
+        url(../../../assets/images/pizza--13.png), url(../../../assets/images/pizza--14.png),
+        url(../../../assets/images/pizza--15.png), url(../../../assets/images/pizza--16.png);
+    background-position: -99999px;
+}
