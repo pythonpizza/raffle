@@ -19,6 +19,7 @@
         "eslint": "^4.5.0",
         "eslint-config-synacor": "^1.1.0",
         "eslint-plugin-typescript": "0.12.0",
+        "firebase": "5.5.0",
         "poi": "^10.2.10",
         "postcss-custom-media": "6.0.0",
         "postcss-nested": "3.0.0",

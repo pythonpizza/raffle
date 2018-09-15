@@ -7,6 +7,8 @@ import './theme.css';
 import './typography.css';
 import './base.css';
 
+import firebase from '@/firebase';
+
 export default class App extends React.Component {
     state = {
         isLoading: true,
@@ -16,13 +18,43 @@ export default class App extends React.Component {
     };
 
     componentWillMount() {
-        const loadEntriesPromise = new Promise(resolve => setTimeout(resolve, 1000 * Math.random())).then(() =>
-            this.setState({
-                entries: Array.from(Array(64).keys()).map((_, i) => i + 1),
-            })
-        );
+        firebase
+            .firestore()
+            .collection('tickets')
+            .doc('EpdcIeLiUwydTtTTebmt')
+            .get()
+            .then(doc => {
+                if (!doc.exists) {
+                    return;
+                }
 
-        loadEntriesPromise.then(() => this.setState({ isLoading: false }));
+                const data = doc.data();
+
+                if (!data) {
+                    return;
+                }
+
+                // console.log('res', data);
+                // todo: do not use a for lol
+                const entries = [];
+                for (let i = data.min; i <= data.max; ++i) {
+                    if (data.exclude.indexOf(i) !== -1) {
+                        continue;
+                    }
+
+                    entries.push(i);
+                }
+
+                // console.log('entries', entries);
+
+                this.setState({
+                    entries,
+                    isLoading: false,
+                });
+            })
+            .catch(err => {
+                console.error('err', err);
+            });
     }
 
     handleEntrySelected = (e: number) => {
