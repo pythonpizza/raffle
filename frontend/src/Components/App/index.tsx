@@ -38,7 +38,7 @@ export default class App extends React.Component {
         return (
             <div>
                 <div className="pizza-preload" />
-                {isLoading && <div>Loading...</div>}
+                {isLoading && <div className="App--loader" />}
                 {!isLoading && <Raffle entries={availableEntries} onSelect={this.handleEntrySelected} />}
             </div>
         );

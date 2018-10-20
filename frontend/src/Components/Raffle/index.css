@@ -6,6 +6,8 @@
 
     min-height: 100vh;
 
+    animation: fade-in 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+
     &--selected-entry-wrapper {
         height: 12rem;
 
@@ -151,5 +153,14 @@
     }
     100% {
         transform: scale(1.2) translateX(-2%);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    top {
+        opacity: 1;
     }
 }
