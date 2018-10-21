@@ -3,6 +3,22 @@ body {
     min-height: 100vh;
 }
 
+.App--loader {
+    width: 3.2rem;
+    height: 3.2rem;
+    margin: 3.2rem;
+
+    border-radius: 50%;
+
+    background: white;
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+    animation: pulse 0.6s infinite alternate ease;
+}
+
 .pizza-preload {
     width: 0;
     height: 0;
@@ -16,4 +32,15 @@ body {
         url(../../../assets/images/pizza--13.png), url(../../../assets/images/pizza--14.png),
         url(../../../assets/images/pizza--15.png), url(../../../assets/images/pizza--16.png);
     background-position: -99999px;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
